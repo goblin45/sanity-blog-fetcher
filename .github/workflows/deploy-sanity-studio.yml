@@ -22,6 +22,7 @@ jobs:
   deploy-sanity-studio:
     name: Deploy Sanity Studio
     runs-on: ubuntu-latest
+    environment: production
     timeout-minutes: 20
 
     steps:
@@ -37,12 +38,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Deploy Sanity Studio and schema
+      - name: Verify Sanity configuration
         env:
-          # Production Sanity configuration from GitHub Actions Variables
           SANITY_STUDIO_APP_ID: ${{ vars.SANITY_STUDIO_APP_ID }}
           SANITY_STUDIO_DATASET: ${{ vars.SANITY_STUDIO_DATASET }}
           SANITY_STUDIO_PROJECT_ID: ${{ vars.SANITY_STUDIO_PROJECT_ID }}
-          # Deploy token from GitHub Actions Secrets (never echo this value)
+          
+        run: |
+          echo "SANITY_STUDIO_APP_ID: ${SANITY_STUDIO_APP_ID:+SET}"
+          echo "SANITY_STUDIO_DATASET: ${SANITY_STUDIO_DATASET:+SET}"
+          echo "SANITY_STUDIO_PROJECT_ID: ${SANITY_STUDIO_PROJECT_ID:+SET}"
+          
+
+      - name: Deploy Sanity Studio and schema
+        env:
+          # Production Sanity configuration from GitHub Environment Variables
+          SANITY_STUDIO_APP_ID: ${{ vars.SANITY_STUDIO_APP_ID }}
+          SANITY_STUDIO_DATASET: ${{ vars.SANITY_STUDIO_DATASET }}
+          SANITY_STUDIO_PROJECT_ID: ${{ vars.SANITY_STUDIO_PROJECT_ID }}
+          
+
+          # Deploy token from GitHub Environment Secrets
+          # Never echo this value.
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         run: npx sanity deploy --yes --schema-required
