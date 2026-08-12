@@ -61,4 +61,4 @@ jobs:
           # Deploy token from GitHub Environment Secrets
           # Never echo this value.
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
-        run: npx sanity deploy --yes --schema-required
+        run: npx sanity@latest deploy --yes --schema-required
