@@ -1,0 +1,48 @@
+# Deploy Sanity Studio (Production)
+#
+# Deploys the version-controlled Sanity Studio and schemas to the production
+# Sanity environment when commits land on the `production` branch (including
+# merges from pull requests).
+
+name: Deploy Sanity Studio (Production)
+
+on:
+  push:
+    branches:
+      - production
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sanity-deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy-sanity-studio:
+    name: Deploy Sanity Studio
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Deploy Sanity Studio and schema
+        env:
+          # Production Sanity configuration from GitHub Actions Variables
+          SANITY_STUDIO_APP_ID: ${{ vars.SANITY_STUDIO_APP_ID }}
+          SANITY_STUDIO_DATASET: ${{ vars.SANITY_STUDIO_DATASET }}
+          SANITY_STUDIO_PROJECT_ID: ${{ vars.SANITY_STUDIO_PROJECT_ID }}
+          # Deploy token from GitHub Actions Secrets (never echo this value)
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+        run: npx sanity deploy --yes --schema-required

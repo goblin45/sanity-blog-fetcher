@@ -1,0 +1,46 @@
+# Local / staging-style orchestration for this starter.
+# Never commit secrets. Pass Infisical-injected env into Compose, for example:
+#   dotenv -- infisical run -- docker compose up --build
+# Docs: docs/DOCKER.md
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: app
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d app']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    environment:
+      NODE_ENV: production
+      HOSTNAME: 0.0.0.0
+      PORT: 3000
+      # Values must come from the host environment (Infisical via dotenv -- infisical run -- …).
+      DATABASE_URL: ${DATABASE_URL}
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+      SLOW_API_THRESHOLD_MS: ${SLOW_API_THRESHOLD_MS:-1000}
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

@@ -1,0 +1,58 @@
+{
+  "HomePage": {
+    "title": "Blog",
+    "description": "Latest posts from Sanity.",
+    "blog": {
+      "empty": "No posts published yet.",
+      "readMore": "Read more"
+    },
+    "pdfsLink": "Browse PDFs"
+  },
+  "BlogPost": {
+    "backToList": "Back to all posts",
+    "emptyBody": "This post has no content yet.",
+    "carousel": {
+      "label": "Image carousel",
+      "previous": "Previous",
+      "next": "Next",
+      "status": "{current} of {total}",
+      "dotsLabel": "Choose slide",
+      "goTo": "Go to image {index}",
+      "fallbackAlt": "Carousel image {index}"
+    }
+  },
+  "PdfList": {
+    "title": "PDFs",
+    "description": "Open Sanity PDFs in DearFlip.",
+    "empty": "No PDFs published yet.",
+    "openFlipbook": "Open flipbook",
+    "openRaw": "Open PDF",
+    "backToBlog": "Back to blog"
+  },
+  "PdfViewer": {
+    "backToList": "Back to all PDFs",
+    "missingFile": "This PDF has no file URL yet."
+  },
+  "Metadata": {
+    "HomePage": {
+      "title": "Blog | Sanity Blog Fetcher",
+      "description": "Browse Sanity-powered blog posts."
+    },
+    "BlogPost": {
+      "title": "{title} | Blog",
+      "fallbackDescription": "Read {title} on the blog.",
+      "notFoundTitle": "Post not found | Blog",
+      "notFoundDescription": "The requested blog post could not be found."
+    },
+    "PdfList": {
+      "title": "PDFs | Sanity Blog Fetcher",
+      "description": "Browse Sanity PDF documents in DearFlip."
+    },
+    "PdfViewer": {
+      "title": "{title} | PDF",
+      "description": "View {title} as a flipbook.",
+      "notFoundTitle": "PDF not found",
+      "notFoundDescription": "The requested PDF could not be found."
+    }
+  }
+}

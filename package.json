@@ -1,0 +1,65 @@
+{
+  "name": "next-prisma-starter-template",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "dotenv -- infisical run -- next dev",
+    "build": "dotenv -- infisical run -- next build",
+    "start": "dotenv -- infisical run -- next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "dotenv -- infisical run -- jest --testPathIgnorePatterns=integration",
+    "test:watch": "dotenv -- infisical run -- jest --watch --testPathIgnorePatterns=integration",
+    "test:integration": "dotenv -- infisical run -- jest --testPathPattern=integration",
+    "test:all": "dotenv -- infisical run -- jest",
+    "prepare": "husky && node scripts/sync-dflip.mjs",
+    "sync:dflip": "node scripts/sync-dflip.mjs"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1101.0",
+    "@aws-sdk/s3-request-presigner": "^3.1101.0",
+    "@dearhive/dearflip-jquery-flipbook": "^1.7.3",
+    "@infisical/cli": "^0.43.114",
+    "@portabletext/react": "^7.0.1",
+    "@prisma/client": "^7.9.1",
+    "@sanity/client": "^7.26.2",
+    "@sanity/icons": "^5.2.1",
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/vision": "^6.9.1",
+    "dotenv-cli": "^11.0.0",
+    "next": "16.2.12",
+    "next-intl": "^4.13.4",
+    "next-themes": "^0.4.6",
+    "prisma": "^7.9.1",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "sanity": "^6.9.1",
+    "styled-components": "^6.5.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^7.0.0",
+    "@testing-library/react": "^16.3.2",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.12",
+    "husky": "^9.1.7",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
+    "lint-staged": "^17.2.0",
+    "prettier": "^3.9.6",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,md}": [
+      "prettier --write"
+    ]
+  }
+}

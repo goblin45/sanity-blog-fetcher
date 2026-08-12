@@ -1,0 +1,31 @@
+echo "Applying Prettier..."
+npx lint-staged
+
+echo "Running TypeScript check..."
+npm run typecheck
+
+TSC_STATUS=$?
+if [ $TSC_STATUS -ne 0 ]; then
+  echo "❌ TypeScript check failed. Commit aborted."
+  exit 1
+fi
+
+echo "Running unit tests..."
+npm test
+
+TEST_STATUS=$?
+if [ $TEST_STATUS -ne 0 ]; then
+  echo "❌ Tests failed. Commit aborted."
+  exit 1
+fi
+
+echo "Running build..."
+npm run build
+
+BUILD_STATUS=$?
+if [ $BUILD_STATUS -ne 0 ]; then
+  echo "❌ Build failed. Commit aborted."
+  exit 1
+fi
+
+echo "✅ Tests, typecheck, and build passed. Proceeding with commit."

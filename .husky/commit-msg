@@ -1,0 +1,21 @@
+commit_msg_file="$1"
+commit_msg=$(cat "$commit_msg_file")
+
+today=$(date +"%Y-%m-%d")
+
+# Require only: #<issue-number> <message>
+if ! echo "$commit_msg" | grep -Eq '^#[0-9]+ .+'; then
+  echo "❌ Invalid commit message format."
+  echo "Commit must start with an issue number."
+  echo "Example:"
+  echo "  #123 Fix table scroll bug"
+  exit 1
+fi
+
+# Remove any previously appended date (useful for amend/reword)
+commit_msg=$(echo "$commit_msg" | sed -E 's/ - (19|20)[0-9]{2}-[0-9]{2}-[0-9]{2}$//')
+
+# Append today's date
+printf "%s - %s\n" "$commit_msg" "$today" > "$commit_msg_file"
+
+echo "✅ Commit message updated with date: $today"

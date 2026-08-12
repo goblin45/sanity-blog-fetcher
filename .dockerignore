@@ -1,0 +1,50 @@
+# Dependencies and build output
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.next
+out
+build
+coverage
+*.tsbuildinfo
+generated
+
+# Git / IDE / agent tooling
+.git
+.cursor
+.vscode
+.idea
+.agents
+.claude
+.windsurf
+.husky
+
+# Env and secrets (never bake into images)
+.env
+.env.*
+
+# Docs and non-runtime paths
+README.md
+SETUP.md
+CONTRIBUTING.md
+AGENTS.md
+TEMPLATE_CONVERSION.md
+CLAUDE.md
+docs
+
+# Tests
+**/*.test.ts
+**/*.test.tsx
+**/*.integration.test.ts
+tests
+jest.config.ts
+jest.setup.ts
+
+# Misc
+.DS_Store
+*.pem
+.vercel
+docker-compose*.yml
+.dockerignore

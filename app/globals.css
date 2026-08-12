@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+
+/* Resolve `dark:` utilities from the `.dark` class set by next-themes.
+ * Kept so dark-mode utilities remain available when dark theme ships. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* -------------------------------------------------------------------------
+ * Semantic theme tokens
+ *
+ * PLACEHOLDER VALUES — these colors are temporary stand-ins and will be
+ * replaced with the approved brand / design-system originals soon.
+ *
+ * Components must consume these via Tailwind utilities (e.g. `bg-background`,
+ * `text-foreground`) — never hard-coded color values.
+ *
+ * Release 1: only light tokens are intentional. `.dark` mirrors light so that
+ * if `.dark` is applied (localStorage, DevTools, future toggle), semantic
+ * utilities still resolve and the UI does not break. Replace `.dark` values
+ * when dark theme styles are implemented.
+ * ------------------------------------------------------------------------- */
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #0f3d68;
+  --primary-foreground: #f8fafc;
+  --secondary: #e8eef4;
+  --secondary-foreground: #0f3d68;
+  --muted: #f4f6f8;
+  --muted-foreground: #5c6b7a;
+  --border: #d8e0e8;
+  --destructive: #b42318;
+  --destructive-foreground: #fef2f2;
+}
+
+/* Dark token slot — Release 1 fallback (same as light). Not a finished dark theme. */
+.dark {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #0f3d68;
+  --primary-foreground: #f8fafc;
+  --secondary: #e8eef4;
+  --secondary-foreground: #0f3d68;
+  --muted: #f4f6f8;
+  --muted-foreground: #5c6b7a;
+  --border: #d8e0e8;
+  --destructive: #b42318;
+  --destructive-foreground: #fef2f2;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
