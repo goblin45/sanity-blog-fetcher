@@ -28,19 +28,7 @@ export default defineType({
         accept: 'application/pdf',
       },
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'cdnUrl',
-      title: 'CDN URL',
-      type: 'string',
-      description:
-        'Copy this link after uploading the PDF. It is generated from the file asset.',
-      readOnly: true,
-      hidden: true,
-      components: {
-        input: CdnUrlInput,
-      },
-    }),
+    })
   ],
   preview: {
     select: {
