@@ -6,4 +6,4 @@ import pdf from './pdf'
 import gallery from './gallery'
 import galleryPhoto from './galleryPhoto'
 
-export const schemaTypes = [post, author, category, blockContent, pdf, gallery, galleryPhoto]
+export const schemaTypes = [post, author, category, blockContent, gallery, galleryPhoto]
