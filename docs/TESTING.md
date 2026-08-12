@@ -43,7 +43,7 @@ dotenv -- infisical run -- jest --testPathIgnorePatterns=integration
 dotenv -- infisical run -- jest --testPathPattern=integration
 ```
 
-Pre-commit runs unit tests, TypeScript check, and production build (see `.husky/pre-commit`).
+Pre-commit runs lockfile sync (`npm run check:lockfile`), unit tests, TypeScript check, and production build (see `.husky/pre-commit`).
 
 ---
 

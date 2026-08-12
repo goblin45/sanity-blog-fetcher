@@ -4,4 +4,4 @@ import post from './post'
 import author from './author'
 import pdf from './pdf'
 
-export const schemaTypes = [post, author, category, blockContent, pdf]
+export const schemaTypes = [post, blockContent, pdf]

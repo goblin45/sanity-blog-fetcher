@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-08-12T18:18:23.224Z",
+  "createdAt": "2026-08-12T18:33:59.448Z",
   "studioVersion": "6.9.2",
   "version": 3,
   "workspaces": [
@@ -13,7 +13,7 @@
       },
       "name": "default",
       "projectId": "12jszf8z",
-      "schema": "71ce3c2f.create-schema.json",
+      "schema": "777ea5c8.create-schema.json",
       "title": "Nexval Blogs",
       "tools": "ef87c8fe.create-tools.json"
     }

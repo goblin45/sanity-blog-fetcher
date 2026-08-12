@@ -1,6 +1,27 @@
 echo "Applying Prettier..."
 npx lint-staged
 
+# Catch the same package.json / package-lock.json mismatch that breaks CI `npm ci`
+# before an incomplete lockfile can be committed.
+STAGED_FILES="$(git diff --cached --name-only)"
+
+if echo "$STAGED_FILES" | grep -qx 'package.json'; then
+  if ! echo "$STAGED_FILES" | grep -qx 'package-lock.json'; then
+    echo "❌ package.json is staged but package-lock.json is not."
+    echo "   Run \`npm install\`, stage package-lock.json, then commit both."
+    exit 1
+  fi
+fi
+
+echo "Verifying package-lock.json is in sync with package.json..."
+npm run check:lockfile
+LOCKFILE_STATUS=$?
+if [ $LOCKFILE_STATUS -ne 0 ]; then
+  echo "❌ package-lock.json is out of sync (npm ci would fail in CI)."
+  echo "   Run \`npm install\`, stage package-lock.json, then commit again."
+  exit 1
+fi
+
 echo "Running TypeScript check..."
 npm run typecheck
 
@@ -28,4 +49,4 @@ if [ $BUILD_STATUS -ne 0 ]; then
   exit 1
 fi
 
-echo "✅ Tests, typecheck, and build passed. Proceeding with commit."
+echo "✅ Lockfile, tests, typecheck, and build passed. Proceeding with commit."
