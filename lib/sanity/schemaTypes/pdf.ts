@@ -1,7 +1,7 @@
 import { DocumentPdfIcon } from '@sanity/icons/DocumentPdf';
 import { defineField, defineType } from 'sanity';
 
-import { CdnUrlInput } from '../components/CdnUrlInput';
+// import { CdnUrlInput } from '../components/CdnUrlInput';
 
 /**
  * Sanity document type for PDF assets displayed with DearFlip on the site.
@@ -29,16 +29,23 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'cdnUrl',
-      title: 'CDN URL',
-      type: 'string',
-      description:
-        'Copy this link after uploading the PDF. It is generated from the file asset.',
-      readOnly: true,
-      components: {
-        input: CdnUrlInput,
-      },
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      rows: 4,
     }),
+    // defineField({
+    //   name: 'cdnUrl',
+    //   title: 'CDN URL',
+    //   type: 'string',
+    //   description:
+    //     'Copy this link after uploading the PDF. It is generated from the file asset.',
+    //   readOnly: true,
+    //   hidden: true,
+    //   components: {
+    //     input: CdnUrlInput,
+    //   },
+    // }),
   ],
   preview: {
     select: {

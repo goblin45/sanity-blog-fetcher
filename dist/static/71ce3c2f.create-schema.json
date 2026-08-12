@@ -321,53 +321,5 @@
     ],
     "name": "blockContent",
     "type": "array"
-  },
-  {
-    "fields": [
-      {
-        "validation": [
-          {
-            "level": "error",
-            "rules": [
-              {
-                "flag": "presence",
-                "constraint": "required"
-              }
-            ]
-          }
-        ],
-        "name": "title",
-        "type": "string"
-      },
-      {
-        "options": {
-          "accept": "application/pdf"
-        },
-        "validation": [
-          {
-            "level": "error",
-            "rules": [
-              {
-                "flag": "presence",
-                "constraint": "required"
-              }
-            ]
-          }
-        ],
-        "name": "file",
-        "type": "file",
-        "title": "PDF file"
-      },
-      {
-        "description": "Copy this link after uploading the PDF. It is generated from the file asset.",
-        "readOnly": true,
-        "name": "cdnUrl",
-        "type": "string",
-        "title": "CDN URL"
-      }
-    ],
-    "name": "pdf",
-    "type": "document",
-    "title": "PDF"
   }
 ]
