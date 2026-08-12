@@ -15,6 +15,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      rows: 4,
+    }),
+    defineField({
       name: 'file',
       title: 'PDF file',
       type: 'file',
@@ -27,8 +33,10 @@ export default defineType({
       name: 'cdnUrl',
       title: 'CDN URL',
       type: 'string',
-      description: 'Copy this link after uploading the PDF. It is generated from the file asset.',
+      description:
+        'Copy this link after uploading the PDF. It is generated from the file asset.',
       readOnly: true,
+      hidden: true,
       components: {
         input: CdnUrlInput,
       },
